@@ -1,7 +1,7 @@
 <template>
     <el-menu
       :default-active="activeIndex"
-        background-color="#16161a "
+        background-color="#CC6CE7 "
         text-color="#fff"
       class="el-menu-demo"
       mode="horizontal"
@@ -17,7 +17,7 @@
       </el-menu-item>
   
       <el-sub-menu index="1" >
-        <template #title>Oscar Sierra</template>
+        <template #title>Veronica</template>
         <el-menu-item index="2-1">Perfil</el-menu-item>
         <el-menu-item index="2-2">Cerrar Sesion</el-menu-item>
 

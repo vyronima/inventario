@@ -1,6 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import Paises from '../views/paises/paises.vue'
-import Cargos from '../views/cargos/cargos.vue'
+import Bodegas from '../views/Bodegas/Bodegas.vue'
+import Productos from '../views/Productos/Productos.vue'
+import Proveedores from '../views/Proveedores/Proveedores.vue'
+import Movimientos from '../views/Movimientos/Movimientos.vue'
+import Categoria from '../views/Categoria/Categoria.vue'
 import LayoutMain from '../components/LayoutMain.vue'
 import Login from '../components/Login.vue'
 
@@ -18,14 +21,29 @@ const routes =[
 },
 
 {
-    path:'/pais',
-    name:'Paises',
-    component: Paises,
+    path:'/Bodegas',
+    name:'Bodegas',
+    component: Bodegas,
 },
 {
-    path:'/cargos',
-    name:'Cargos',
-    component: Cargos,
+    path:'/Productos',
+    name:'Productos',
+    component: Productos,
+},
+{
+    path:'/Proveedores',
+    name:'Proveedores',
+    component: Proveedores,
+},
+{
+    path:'/Movimientos',
+    name:'Movimientos',
+    component: Movimientos,
+},
+{
+    path:'/Categoria',
+    name:'Categoria',
+    component: Categoria,
 }
 
 ]

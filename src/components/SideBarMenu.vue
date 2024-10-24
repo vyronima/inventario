@@ -4,7 +4,7 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          background-color="#242629"
+          background-color="#CC6CE7"
           text-color="#fff"
           collapse-transition
         >
@@ -14,9 +14,11 @@
               <span>Administrador</span>
             </template>
   
-            <el-menu-item index="1-2">Personas</el-menu-item>
-            <el-menu-item index="1-3">Cargos</el-menu-item>
-            <el-menu-item index="1-4">Paises</el-menu-item>
+            <el-menu-item index="1-2">Bodega</el-menu-item>
+            <el-menu-item index="1-3">Productos</el-menu-item>
+            <el-menu-item index="1-4">Proveedores</el-menu-item>
+            <el-menu-item index="1-5">Categoria</el-menu-item>
+            <el-menu-item index="1-6">Movimientos</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="2">
             <template #title>
@@ -24,9 +26,8 @@
               <span>Configuracion</span>
             </template>
   
-            <el-menu-item index="1-2">Personas</el-menu-item>
-            <el-menu-item index="1-3">Cargos</el-menu-item>
-            <el-menu-item index="1-4">Paises</el-menu-item>
+            <el-menu-item index="1-2">usuarios</el-menu-item>
+            
           </el-sub-menu>
         </el-menu>
       </el-col>

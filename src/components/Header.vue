@@ -4,7 +4,7 @@
         <div class="container_header">
             <h2 class="titulo">Modulo de {{titulo}}</h2>
             <el-row justify="center" align="middle">
-                <el-button type="primary">{{ tituloBoton }}</el-button>
+                <el-button type="Danger">{{ tituloBoton }}</el-button>
     
             </el-row>
 
