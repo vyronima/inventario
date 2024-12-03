@@ -1,36 +1,40 @@
 <template>
   <LayoutMain>
     <template #slotLayout>
-      <Header 
-      :titulo="'Categoria'"
-      :tituloBoton="'Crear Categoria'"
-      >
-      </Header>
-      <!-- componente/ -->
-      <Formulario :titulo="'titulo del formulario'">
+      <!-- Encabezado -->
+      <Header :titulo="'Categoría'" />
 
-        <template #slotForm>
-          <formCategoria/>
-        </template>
+      <!-- Botones de acción -->
+      <el-row justify="center" align="middle" class="my-3">
+        <el-button type="primary" @click="mostrarTabla = true; mostrarFormulario = false">Ver</el-button>
+        <el-button type="primary" @click="mostrarFormulario = true; mostrarTabla = false">Añadir</el-button>
+        <el-button type="primary">Buscar</el-button>
+      </el-row>
 
-      </Formulario>
+      <!-- Formulario de Categoría -->
+      <formcategoria v-if="mostrarFormulario" />
 
-          
+      <!-- Tabla de Categorías -->
+      <TablaCategorias v-if="mostrarTabla" />
     </template>
+  </LayoutMain>
+</template>
 
+<script lang="ts" setup>
+import { ref } from 'vue';
+import LayoutMain from '../../components/LayoutMain.vue';
+import Header from '../../components/Header.vue';
+import formcategoria from './components/formCategoria.vue';
+import TablaCategorias from './components/verCategorias.vue';
 
-    </LayoutMain>
-  </template>
-    
-  
-  <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
-  import LayoutMain from '../../components/LayoutMain.vue';
-  import  formPaises from './components/formCategoria.vue'
-  import Formulario from '../../components/Formulario.vue';
-  import Header from '../../components/Header.vue';
-  import  {Delete,Edit} from "@element-plus/icons-vue"
+// Variables reactivas para manejar la visibilidad de los componentes
+const mostrarFormulario = ref(false);
+const mostrarTabla = ref(false);
+</script>
 
-
-  
-  </script>
+<style scoped>
+/* Estilo opcional para margen entre los botones */
+.my-3 {
+  margin: 1rem 0;
+}
+</style>

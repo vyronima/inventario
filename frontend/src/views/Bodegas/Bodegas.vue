@@ -4,7 +4,7 @@
       <Header 
         :titulo="'Bodegas'"/>
       <!-- Componente Formulario -->
-      <Formulario :titulo="'Bodegas'">
+      <Formulario >
         <template #slotForm>
           <formBodegas />
         </template>
