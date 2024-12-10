@@ -54,6 +54,85 @@ app.get('/ciudades/:id_departamento', (req, res) => {
   );
 });
 
+app.put('/eliminarProducto/:id', (req, res) => {
+  const { id } = req.params;
+  db.query('UPDATE productos SET Visible = 0 WHERE id = ?;', [id], (err, results) => {
+    if (err) {
+      return res.status(500).send({ error: 'Error al Eliminar producto' });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).send({ error: 'Producto no encontrado' });
+    }
+
+    res.json({ message: 'Producto Eliminado correctamente', results });
+  });
+});
+
+// Endpoint para actualizar un producto
+app.post('/productos', (req, res) => {
+  const { nombre, cantidad, categoria, disponible } = req.body; // Datos del producto a insertar
+
+  // Verificar que todos los campos necesarios están presentes
+  if (!nombre || cantidad === undefined || !categoria || disponible === undefined) {
+    return res.status(400).send({ error: 'Todos los campos son necesarios' });
+  }
+
+  // Query para insertar el producto
+  const query = `
+    INSERT INTO productos (nombre, cantidad, categoria, disponible)
+    VALUES (?, ?, ?, ?)
+  `;
+
+  // Ejecutar la query
+  db.query(query, [nombre, cantidad, categoria, disponible], (err, result) => {
+    if (err) {
+      console.error('Error al insertar el producto:', err);
+      res.status(500).send({ error: 'Error al insertar el producto' });
+    } else {
+      res.send({ message: 'Producto insertado exitosamente', id: result.insertId });
+    }
+  });
+});
+
+// Obtener las categorías de la base de datos
+app.get('/categorias', (req, res) => {
+  const query = 'SELECT * FROM categorias'; // Cambia a tu consulta real
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Error al obtener las categorías:', err);
+      res.status(500).send({ error: 'Error al obtener las categorías' });
+    } else {
+      res.json(result);  // Devuelve las categorías
+    }
+  });
+});
+
+app.get('/productos', (req, res) => {
+  const query = `
+    SELECT 
+    productos.id, 
+    productos.nombre, 
+          categorias.nombre AS categoria, 
+          productos.cantidad, 
+          productos.disponible
+    FROM productos
+    LEFT JOIN categorias
+    ON categorias.id = productos.categoria
+    WHERE productos.visible = 1
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error('Error al obtener los productos:', err);
+      res.status(500).send({ error: 'Error al obtener los productos' });
+    } else {
+      res.json(result);  // Devuelve los productos junto con la categoría
+    }
+  });
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
