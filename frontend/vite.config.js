@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: './', // Asegúrate de que el valor sea correcto para despliegues locales
   server: {
     proxy: {
-      '/productos': 'http://localhost:3000', // Ajusta esta URL a la del servidor backend
+      '/productos': 'http://localhost:3000',
     },
   },
 })
